@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "Order")
+@Table(name = "[order]")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +17,8 @@ public class Order {
     @Column(name = "pickup_date")
     private Date pickupDate;
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "status")
-    private Status status;
+    @Column(name = "order_status")
+    private OrderStatus orderStatus;
     @OneToMany(mappedBy = "order", targetEntity = OrderProduct.class)
     private List<OrderProduct> products;
     @Column(name = "location_id")

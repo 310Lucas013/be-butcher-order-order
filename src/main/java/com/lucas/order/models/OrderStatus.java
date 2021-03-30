@@ -1,6 +1,6 @@
 package com.lucas.order.models;
 
-public enum Status {
+public enum OrderStatus {
     CREATED,
     ACCEPTED,
     DECLINED,
