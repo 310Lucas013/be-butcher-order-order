@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@Table(name = "Product")
-public class Product {
+@Table(name = "Order_Product")
+public class OrderProduct {
     @Id
     @Column(name = "id")
     private long id;
@@ -15,7 +15,7 @@ public class Product {
     @JoinColumn(name = "Order_id")
     private Order order;
 
-    public Product() {
+    public OrderProduct() {
 
     }
 }

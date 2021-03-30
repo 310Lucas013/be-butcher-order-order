@@ -19,8 +19,8 @@ public class Order {
     @Enumerated(value = EnumType.STRING)
     @Column(name = "status")
     private Status status;
-    @OneToMany(mappedBy = "order", targetEntity = Product.class)
-    private List<Product> products;
+    @OneToMany(mappedBy = "order", targetEntity = OrderProduct.class)
+    private List<OrderProduct> products;
     @Column(name = "location_id")
     private long locationId;
     @Column(name = "customer_id")
