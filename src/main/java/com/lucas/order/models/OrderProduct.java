@@ -9,10 +9,10 @@ import javax.persistence.*;
 @Table(name = "Order_Product")
 public class OrderProduct {
     @Id
-    @Column(name = "id")
-    private long id;
+    @Column(name = "product_id")
+    private long productId;
     @ManyToOne
-    @JoinColumn(name = "Order_id")
+    @JoinColumn(name = "id")
     private Order order;
 
     public OrderProduct() {
