@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/orders")
-@CrossOrigin(origins = {"http://localhost:4101"})
 public class OrderController {
     private final OrderService orderService;
 

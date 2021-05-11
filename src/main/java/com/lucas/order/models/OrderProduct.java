@@ -14,6 +14,8 @@ public class OrderProduct {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
+    @Column(name = "amount")
+    private int amount;
 
     public OrderProduct() {
 
