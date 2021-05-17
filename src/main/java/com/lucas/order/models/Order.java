@@ -25,6 +25,8 @@ public class Order {
     private long locationId;
     @Column(name = "customer_id")
     private long customerId;
+    @Column(name = "butcher_id")
+    private long butcherId;
 
     public Order() {
 

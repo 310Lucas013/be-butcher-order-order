@@ -11,10 +11,7 @@ import com.lucas.order.services.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
@@ -35,6 +32,15 @@ public class OrderController {
         Order order = orderService.createOrder(orderDto);
         System.out.println(order);
         String result = gson.toJson(order);
+        return new ResponseEntity<String>(result, HttpStatus.CREATED);
+    }
+
+    @GetMapping(value = "/created-status/{butcherId}")
+    public ResponseEntity<?> getOrdersByCreatedStatus(@PathVariable("butcherId") Long butcherId) {
+        Gson gson = initiateGson();
+        List<Order> orders = orderService.getOrdersByCreatedStatus(butcherId);
+        System.out.println(orders);
+        String result = gson.toJson(orders);
         return new ResponseEntity<String>(result, HttpStatus.CREATED);
     }
 

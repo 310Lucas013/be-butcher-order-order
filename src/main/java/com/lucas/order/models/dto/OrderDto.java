@@ -13,4 +13,5 @@ public class OrderDto {
     private List<OrderProductDto> products;
     private long locationId;
     private long customerId;
+    private long butcherId;
 }

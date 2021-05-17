@@ -39,4 +39,8 @@ public class OrderService {
     public Order saveOrder(Order order) {
         return this.orderRepository.save(order);
     }
+
+    public List<Order> getOrdersByCreatedStatus(Long butcherId) {
+        return orderRepository.findAllByButcherIdAndOrderStatusEquals(butcherId, OrderStatus.CREATED);
+    }
 }
