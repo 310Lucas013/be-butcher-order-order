@@ -5,6 +5,7 @@ import com.lucas.order.models.OrderProduct;
 import com.lucas.order.models.OrderStatus;
 import com.lucas.order.models.dto.OrderDto;
 import com.lucas.order.models.dto.OrderProductDto;
+import com.lucas.order.repositories.OrderProductRepository;
 import com.lucas.order.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,26 +15,23 @@ import java.util.List;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final OrderProductRepository orderProductRepository;
 
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository, OrderProductRepository orderProductRepository) {
         this.orderRepository = orderRepository;
+        this.orderProductRepository = orderProductRepository;
     }
 
     public Order createOrder(OrderDto orderDto) {
-        Order order = new Order();
-        order.setOrderStatus(OrderStatus.CREATED);
-        order.setPickupDate(orderDto.getPickupDate());
-        List<OrderProduct> orderProducts = new ArrayList<>();
+        Order order = new Order(orderDto);
+        Order result = saveOrder(order);
         for(OrderProductDto opd: orderDto.getProducts()) {
-            OrderProduct orderProduct = new OrderProduct();
-            orderProduct.setProductId(opd.getProductId());
-            orderProduct.setAmount(opd.getAmount());
-            orderProducts.add(orderProduct);
+            OrderProduct orderProduct = new OrderProduct(opd, result);
+            OrderProduct rop = this.saveOrderProduct(orderProduct);
+            System.out.println(rop);
+            System.out.println(rop.toString());
         }
-        order.setProducts(orderProducts);
-        order.setCustomerId(orderDto.getCustomerId());
-        order.setLocationId(orderDto.getLocationId());
-        return saveOrder(order);
+        return result;
     }
 
     public Order saveOrder(Order order) {
@@ -42,5 +40,9 @@ public class OrderService {
 
     public List<Order> getOrdersByCreatedStatus(Long butcherId) {
         return orderRepository.findAllByButcherIdAndOrderStatusEquals(butcherId, OrderStatus.CREATED);
+    }
+
+    public OrderProduct saveOrderProduct(OrderProduct orderProduct) {
+        return orderProductRepository.save(orderProduct);
     }
 }

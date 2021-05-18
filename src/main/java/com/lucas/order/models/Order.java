@@ -1,8 +1,11 @@
 package com.lucas.order.models;
 
+import com.lucas.order.models.dto.OrderDto;
+import com.lucas.order.models.dto.OrderProductDto;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,5 +33,23 @@ public class Order {
 
     public Order() {
 
+    }
+
+    public Order(OrderDto orderDto) {
+        this.orderStatus = OrderStatus.CREATED;
+        this.pickupDate = orderDto.getPickupDate();
+        //List<OrderProduct> orderProducts = new ArrayList<>();
+        this.products = new ArrayList<>();
+//        for(OrderProductDto opd: orderDto.getProducts()) {
+//            OrderProduct orderProduct = new OrderProduct();
+//            orderProduct.setProductId(opd.getProductId());
+//            orderProduct.setAmount(opd.getAmount());
+//             orderProduct.setOrder(this);
+//            this.products.add(orderProduct);
+//        }
+        //this.products = orderProducts;
+        this.customerId = orderDto.getCustomerId();
+        this.locationId = orderDto.getLocationId();
+        this.butcherId = orderDto.getButcherId();
     }
 }
