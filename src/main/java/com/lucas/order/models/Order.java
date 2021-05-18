@@ -52,4 +52,17 @@ public class Order {
         this.locationId = orderDto.getLocationId();
         this.butcherId = orderDto.getButcherId();
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", pickupDate=" + pickupDate +
+                ", orderStatus=" + orderStatus +
+                ", products=" + products +
+                ", locationId=" + locationId +
+                ", customerId=" + customerId +
+                ", butcherId=" + butcherId +
+                '}';
+    }
 }

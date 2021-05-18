@@ -32,4 +32,13 @@ public class OrderProduct {
         this.orderId = order.getId();
         this.amount = orderProductDto.getAmount();
     }
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "productId=" + productId +
+                ", orderId=" + orderId +
+                ", amount=" + amount +
+                '}';
+    }
 }

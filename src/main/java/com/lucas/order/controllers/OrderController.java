@@ -37,6 +37,7 @@ public class OrderController {
 
     @GetMapping(value = "/created-status/{butcherId}")
     public ResponseEntity<?> getOrdersByCreatedStatus(@PathVariable("butcherId") Long butcherId) {
+        System.out.println("Order Created Status Entered");
         Gson gson = initiateGson();
         List<Order> orders = orderService.getOrdersByCreatedStatus(butcherId);
         System.out.println(orders);
