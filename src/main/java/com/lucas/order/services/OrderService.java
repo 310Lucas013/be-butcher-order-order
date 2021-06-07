@@ -45,4 +45,18 @@ public class OrderService {
     public OrderProduct saveOrderProduct(OrderProduct orderProduct) {
         return orderProductRepository.save(orderProduct);
     }
+
+    public Order acceptOrder(Order order) {
+        //todo add accept Order Method Logic
+        return null;
+    }
+
+    public Order declineOrder(Order order) {
+        //todo add accept Order Method Logic
+        return null;
+    }
+
+    private Order getOrderById(Long id) {
+        return orderRepository.getById(id);
+    }
 }

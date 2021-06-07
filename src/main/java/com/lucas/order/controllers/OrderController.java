@@ -45,6 +45,23 @@ public class OrderController {
         return new ResponseEntity<String>(result, HttpStatus.CREATED);
     }
 
+    @PostMapping(value = "/accept-order")
+    public ResponseEntity<?> acceptOrder(@RequestBody Order order) {
+        Gson gson = initiateGson();
+        Order updatedOrder = orderService.acceptOrder(order);
+        String result = gson.toJson(updatedOrder);
+        return new ResponseEntity<String>(result, HttpStatus.CREATED);
+
+    }
+
+    @PostMapping(value = "/accept-order")
+    public ResponseEntity<?> declineOrder(@RequestBody Order order) {
+        Gson gson = initiateGson();
+        Order updatedOrder = orderService.declineOrder(order);
+        String result = gson.toJson(updatedOrder);
+        return new ResponseEntity<String>(result, HttpStatus.CREATED);
+    }
+
     private Gson initiateGson() {
         GsonBuilder b = new GsonBuilder();
         b.registerTypeAdapterFactory(HibernateProxyTypeAdapter.FACTORY)
