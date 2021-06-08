@@ -54,7 +54,7 @@ public class OrderController {
 
     }
 
-    @PostMapping(value = "/accept-order")
+    @PostMapping(value = "/decline-order")
     public ResponseEntity<?> declineOrder(@RequestBody Order order) {
         Gson gson = initiateGson();
         Order updatedOrder = orderService.declineOrder(order);
